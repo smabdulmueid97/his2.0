@@ -18,17 +18,25 @@ type NavEntry = {
   children?: { label: string; href: string }[];
 };
 
-const navEntries: NavEntry[] = mainNav.flatMap((item) => [
-  { label: item.label, href: item.href, children: item.children },
-  ...(item.children ?? []).map((child) => ({
-    label: child.label,
-    href: child.href,
-    parent: item,
-  })),
-]);
+const navEntries: NavEntry[] = mainNav.flatMap((item) => {
+  const children =
+    item.children?.map((child) => ({
+      label: child.label.bn,
+      href: child.href,
+    })) ?? [];
+  const parent = { label: item.label.bn, href: item.href, children };
+  return [
+    { label: item.label.bn, href: item.href, children },
+    ...children.map((child) => ({
+      label: child.label,
+      href: child.href,
+      parent,
+    })),
+  ];
+});
 
 const ctaEntries: NavEntry[] = ctaLinks.map((item) => ({
-  label: item.label,
+  label: item.label.bn,
   href: item.href,
 }));
 
@@ -272,7 +280,7 @@ export default function GenericPage({ params }: PageProps) {
           <CardContent className="flex flex-wrap gap-3">
             {ctaLinks.map((item) => (
               <Button key={item.href} variant="outline" asChild>
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href}>{item.label.bn}</Link>
               </Button>
             ))}
           </CardContent>

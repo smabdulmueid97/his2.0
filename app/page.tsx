@@ -359,12 +359,15 @@ export default function Home() {
         <div className="mx-auto grid max-w-screen-2xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <Badge variant="info">{content.hero.badge}</Badge>
-            <div className="flex items-center">
+            <div className="flex flex-wrap items-center gap-4">
               <img
                 src="/logo.png"
                 alt={content.hero.title}
-                className="h-[120px] w-auto md:h-[160px] lg:h-[200px]"
+                className="h-[96px] w-auto md:h-[120px] lg:h-[140px]"
               />
+              <div className="text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl">
+                Habiba International School
+              </div>
             </div>
             <p className="text-base text-[var(--color-muted)] md:text-lg">
               {content.hero.subtitle}
@@ -405,7 +408,7 @@ export default function Home() {
               <div className="overflow-hidden rounded-2xl border border-[var(--color-line)]">
                 <iframe
                   title="Habiba International School Map"
-                  src="https://maps.google.com/maps?q=23.7964989,90.3614516&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=Habiba%20international%20school%20Mirpur%201%20Dhaka&t=&z=17&ie=UTF8&iwloc=&output=embed"
                   className="h-[300px] w-full md:h-[360px]"
                   loading="lazy"
                 />

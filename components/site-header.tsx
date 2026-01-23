@@ -4,13 +4,36 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/components/language-provider";
-import { ctaLinks, mainNav } from "@/lib/site-navigation";
+import { ctaLinks, getLabel, mainNav } from "@/lib/site-navigation";
 
 export default function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const { language, toggleLanguage } = useLanguage();
   const primaryNav = mainNav.filter((item) => item.href !== "/login");
+  const headerText =
+    language === "bn"
+      ? {
+          name: "হাবিবা ইন্টারন্যাশনাল স্কুল",
+          address: "২৯ আল মদিনা রোড, ইস্ট আহমেদ নগর, মিরপুর-১, ঢাকা-১২১৬",
+          phone: "01881659906 , 02226622923",
+          login: "লগইন",
+          menu: "মেনু",
+          close: "বন্ধ",
+          viewAll: "সব দেখুন",
+          toggleLabel: "ভাষা পরিবর্তন",
+        }
+      : {
+          name: "Habiba International School",
+          address: "29 Al Madina Road, East Ahamed Nagor, Mirpur-1, Dhaka-1216",
+          phone: "01881659906, 02226622923",
+          login: "Login",
+          menu: "Menu",
+          close: "Close",
+          viewAll: "View all",
+          toggleLabel: "Change language",
+        };
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -24,6 +47,7 @@ export default function SiteHeader() {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpenMenu(null);
+        setMobileOpen(false);
       }
     };
 
@@ -50,27 +74,34 @@ export default function SiteHeader() {
             </span>
             <div className="space-y-1">
               <p className="text-lg font-semibold text-[var(--color-white)] sm:text-xl">
-                হাবিবা ইন্টারন্যাশনাল স্কুল
+                {headerText.name}
               </p>
               <div className="text-xs text-[color-mix(in_srgb,var(--color-white)_80%,transparent)] sm:text-sm">
-                <span className="block">
-                  ২৯ আল মদিনা রোড, ইস্ট আহমেদ নগর, মিরপুর-১, ঢাকা-১২১৬
-                </span>
-                <span className="block">01881659906 , 02226622923</span>
+                <span className="block">{headerText.address}</span>
+                <span className="block">{headerText.phone}</span>
               </div>
             </div>
           </Link>
           <div className="flex flex-wrap items-center gap-2">
+            {ctaLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${item.className} shadow-sm`}
+              >
+                {getLabel(item.label, language)}
+              </Link>
+            ))}
             <Link
               href="/login"
               className="inline-flex items-center justify-center rounded-full border border-[#3b0f0d] bg-[#4a120f] px-4 py-2 text-sm font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
             >
-              লগইন
+              {headerText.login}
             </Link>
             <button
               type="button"
               onClick={toggleLanguage}
-              aria-label="ভাষা পরিবর্তন"
+              aria-label={headerText.toggleLabel}
               className="inline-flex items-center justify-center rounded-full border border-[#3b0f0d] bg-[#4a120f] px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
             >
               {language === "bn" ? "EN" : "বাংলা"}
@@ -86,27 +117,27 @@ export default function SiteHeader() {
             className="hidden items-center gap-5 text-sm font-semibold text-[var(--color-white)] lg:flex"
           >
             {primaryNav.map((item) => (
-              <div key={item.label} className="relative">
+              <div key={item.href} className="relative">
                 {item.children ? (
                   <>
                     <button
                       type="button"
                       onClick={() =>
                         setOpenMenu((current) =>
-                          current === item.label ? null : item.label
+                          current === item.href ? null : item.href
                         )
                       }
-                      aria-expanded={openMenu === item.label}
-                      className="inline-flex items-center gap-1 rounded-full border border-[#3b0f0d] bg-[#4a120f] px-3 py-1.5 text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
+                      aria-expanded={openMenu === item.href}
+                      className="inline-flex items-center gap-1 rounded-full border border-[#2a0a08] bg-[#6b1f1a] px-3 py-1.5 text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
                     >
-                      {item.label}
+                      {getLabel(item.label, language)}
                       <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
                         ▼
                       </span>
                     </button>
                     <div
-                      className={`absolute left-0 top-full z-30 mt-3 min-w-[320px] rounded-2xl border border-[#3b0f0d] bg-[#4a120f] p-2 text-sm text-[var(--color-white)] shadow-lg transition lg:min-w-[520px] ${
-                        openMenu === item.label
+                      className={`absolute left-0 top-full z-30 mt-3 min-w-[320px] rounded-2xl border border-[#2a0a08] bg-[#3f0f0d] p-2 text-sm text-[var(--color-white)] shadow-xl transition lg:min-w-[520px] ${
+                        openMenu === item.href
                           ? "visible opacity-100"
                           : "invisible pointer-events-none opacity-0"
                       }`}
@@ -114,17 +145,17 @@ export default function SiteHeader() {
                       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                         <Link
                           href={item.href}
-                          className="col-span-full block rounded-xl border border-[#3b0f0d] px-3 py-2 font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
+                          className="col-span-full block rounded-xl border border-[#2a0a08] bg-[#6b1f1a] px-3 py-2 font-semibold text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
                         >
-                          সব দেখুন
+                          {headerText.viewAll}
                         </Link>
                         {item.children.map((child) => (
                           <Link
-                            key={child.label}
+                            key={child.href}
                             href={child.href}
-                            className="block rounded-xl border border-transparent px-3 py-2 text-[var(--color-white)] shadow-sm transition hover:border-[#3b0f0d] hover:bg-[#6b1f1a]"
+                            className="block rounded-xl border border-[#2a0a08] bg-[#6b1f1a] px-3 py-2 text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
                           >
-                            {child.label}
+                            {getLabel(child.label, language)}
                           </Link>
                         ))}
                       </div>
@@ -133,92 +164,111 @@ export default function SiteHeader() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-1 rounded-full border border-[#3b0f0d] bg-[#4a120f] px-3 py-1.5 text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
+                    className="inline-flex items-center gap-1 rounded-full border border-[#2a0a08] bg-[#6b1f1a] px-3 py-1.5 text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
                     onClick={() => setOpenMenu(null)}
                   >
-                    {item.label}
+                    {getLabel(item.label, language)}
                   </Link>
                 )}
               </div>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-2 lg:flex">
-            {ctaLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${item.className} shadow-sm`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            className="flex items-center gap-2 rounded-full border border-[#2a0a08] bg-[#6b1f1a] px-4 py-2 text-sm font-semibold text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23] lg:hidden"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-side-nav"
+          >
+            {headerText.menu}
+            <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
+              ►
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        className={`fixed inset-0 z-50 lg:hidden ${
+          mobileOpen ? "visible" : "invisible"
+        }`}
+        aria-hidden={!mobileOpen}
+      >
+        <button
+          type="button"
+          onClick={() => setMobileOpen(false)}
+          className={`absolute inset-0 bg-black/40 transition-opacity ${
+            mobileOpen ? "opacity-100" : "opacity-0"
+          }`}
+          aria-label="Close menu overlay"
+        />
+        <aside
+          id="mobile-side-nav"
+          className={`absolute left-0 top-0 h-full w-[86%] max-w-sm overflow-y-auto border-r border-[#2a0a08] bg-[#3f0f0d] p-6 text-[var(--color-white)] shadow-2xl transition-transform ${
+            mobileOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <div className="flex items-center justify-between">
+            <div className="text-sm font-semibold uppercase tracking-widest text-[color-mix(in_srgb,var(--color-white)_75%,transparent)]">
+              {headerText.menu}
+            </div>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              className="rounded-full border border-[#2a0a08] bg-[#6b1f1a] px-3 py-1 text-xs font-semibold text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
+            >
+              {headerText.close}
+            </button>
           </div>
 
-          <details className="lg:hidden">
-            <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-[#3b0f0d] bg-[#4a120f] px-4 py-2 text-sm font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a] [&::-webkit-details-marker]:hidden">
-              মেনু
-              <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
-                ▼
-              </span>
-            </summary>
-            <div className="mt-4 space-y-3 rounded-2xl border border-[#3b0f0d] bg-[#4a120f] p-4 text-sm text-[var(--color-white)]">
-              <div className="space-y-2">
-                {primaryNav.map((item) =>
-                  item.children ? (
-                    <details
-                      key={item.label}
-                      className="rounded-xl border border-[#3b0f0d]"
-                    >
-                      <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-semibold [&::-webkit-details-marker]:hidden">
-                        <span>{item.label}</span>
-                        <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
-                          ▼
-                        </span>
-                      </summary>
-                      <div className="grid gap-2 px-4 pb-3 text-sm sm:grid-cols-2">
-                        <Link
-                          href={item.href}
-                          className="sm:col-span-2 rounded-lg border border-[#3b0f0d] px-2 py-1 font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
-                        >
-                          সব দেখুন
-                        </Link>
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            className="rounded-lg border border-transparent px-2 py-1 text-[var(--color-white)] shadow-sm transition hover:border-[#3b0f0d] hover:bg-[#6b1f1a]"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </details>
-                  ) : (
+          <div className="mt-6 space-y-3">
+            {primaryNav.map((item) =>
+              item.children ? (
+                <details
+                  key={item.href}
+                  className="rounded-xl border border-[#2a0a08] bg-[#4a120f]"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-semibold [&::-webkit-details-marker]:hidden">
+                    <span>{getLabel(item.label, language)}</span>
+                    <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
+                      ▼
+                    </span>
+                  </summary>
+                  <div className="grid gap-2 px-4 pb-3 text-sm sm:grid-cols-2">
                     <Link
-                      key={item.label}
                       href={item.href}
-                      className="flex items-center justify-between rounded-xl border border-[#3b0f0d] bg-[#4a120f] px-4 py-3 font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
+                      className="sm:col-span-2 rounded-lg border border-[#2a0a08] bg-[#6b1f1a] px-2 py-1 font-semibold text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
+                      onClick={() => setMobileOpen(false)}
                     >
-                      {item.label}
+                      {headerText.viewAll}
                     </Link>
-                  )
-                )}
-              </div>
-              <div className="flex flex-col gap-2">
-                {ctaLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`${item.className} shadow-sm`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </details>
-        </div>
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="rounded-lg border border-[#2a0a08] bg-[#6b1f1a] px-2 py-1 text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {getLabel(child.label, language)}
+                      </Link>
+                    ))}
+                  </div>
+                </details>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center justify-between rounded-xl border border-[#2a0a08] bg-[#6b1f1a] px-4 py-3 font-semibold text-[var(--color-white)] shadow-md transition hover:bg-[#7f2a23]"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {getLabel(item.label, language)}
+                </Link>
+              )
+            )}
+          </div>
+
+        </aside>
       </div>
     </header>
   );
