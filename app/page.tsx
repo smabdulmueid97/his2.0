@@ -11,7 +11,6 @@ import {
   Users,
 } from "lucide-react";
 
-import MusicPlayer from "@/components/music-player";
 import { useLanguage } from "@/components/language-provider";
 import SectionHeading from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
@@ -655,7 +654,6 @@ export default function Home() {
         </div>
       </section>
 
-      <MusicPlayer />
     </div>
   );
 }

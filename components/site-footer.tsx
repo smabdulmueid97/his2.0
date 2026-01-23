@@ -58,7 +58,7 @@ export default function SiteFooter() {
   }[language];
 
   return (
-    <footer className="relative z-10 border-t border-[#3b0f0d] bg-[#5a1915]">
+    <footer className="relative z-10 border-t border-[#1f0a36] bg-[#2b0f4a]">
       <div className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-12 md:grid-cols-[1.2fr_0.8fr_1fr] md:px-4 2xl:px-0">
         <div className="space-y-3">
           <p className="text-lg font-semibold text-[var(--color-white)]">
@@ -106,7 +106,7 @@ export default function SiteFooter() {
           </p>
         </div>
       </div>
-      <div className="border-t border-[#3b0f0d] px-4 py-4 text-center text-xs text-[color-mix(in_srgb,var(--color-white)_70%,transparent)] 2xl:px-0">
+      <div className="border-t border-[#1f0a36] px-4 py-4 text-center text-xs text-[color-mix(in_srgb,var(--color-white)_70%,transparent)] 2xl:px-0">
         {content.footerNote}
       </div>
     </footer>
