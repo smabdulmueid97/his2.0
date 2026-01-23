@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --color-blue-900: #0b2a5a;
+  --color-blue-700: #12418f;
+  --color-blue-100: #e6f0ff;
+  --color-gold-500: #f2c84b;
+  --color-gold-100: #fff6d6;
+  --color-white: #ffffff;
+  --color-ink: #0c1b33;
+  --color-muted: #4c5d7a;
+  --color-surface: #f7f9fd;
+  --color-line: #d8e2f2;
+  --radius: 16px;
+  --font-sans: var(--font-sora);
+  --font-display: var(--font-playfair);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-surface);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-panel {
+    background: color-mix(in srgb, var(--color-white) 70%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-line) 75%, transparent);
+    box-shadow: 0 24px 60px rgba(12, 27, 51, 0.12);
+  }
+
+  .bg-radial {
+    background: radial-gradient(
+      circle at top,
+      var(--color-blue-100),
+      transparent 65%
+    );
+  }
+
+  .animate-fade-up {
+    animation: fade-up 700ms ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 600ms ease-out both;
+  }
+
+  .animate-sheen {
+    animation: sheen 9s ease-in-out infinite;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-12px);
+  }
+}
