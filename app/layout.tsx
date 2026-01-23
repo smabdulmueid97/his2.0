@@ -18,9 +18,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Habiba International School",
+  title: "হাবিবা ইন্টারন্যাশনাল স্কুল",
   description:
-    "Habiba International School student, teacher, and admin portal.",
+    "হাবিবা ইন্টারন্যাশনাল স্কুলের শিক্ষার্থী, শিক্ষক ও প্রশাসনিক পোর্টাল।",
 };
 
 export default function RootLayout({

@@ -74,63 +74,63 @@ export default function AdmissionsPage() {
       ],
     },
     bn: {
-      badge: "Admissions",
-      title: "Admissions, guidance, and application updates.",
+      badge: "ভর্তি",
+      title: "ভর্তি, দিকনির্দেশনা ও আবেদন আপডেট।",
       subtitle:
-        "Follow the steps below, prepare your documents, and stay informed.",
-      stepsTitle: "Admissions steps",
-      stepsSubtitle: "A clear path from application to enrollment.",
+        "নিচের ধাপগুলো অনুসরণ করুন, কাগজপত্র প্রস্তুত রাখুন এবং নিয়মিত আপডেট দেখুন।",
+      stepsTitle: "ভর্তির ধাপ",
+      stepsSubtitle: "আবেদন থেকে ভর্তি পর্যন্ত স্পষ্ট প্রক্রিয়া।",
       steps: [
         {
           icon: FileText,
-          title: "Submit application",
-          detail: "Complete the form with student and guardian details.",
+          title: "আবেদন জমা",
+          detail: "শিক্ষার্থী ও অভিভাবকের তথ্য দিয়ে ফর্ম পূরণ করুন।",
         },
         {
           icon: ClipboardCheck,
-          title: "Assessment & interview",
-          detail: "Placement review with short subject checks.",
+          title: "মূল্যায়ন ও সাক্ষাৎকার",
+          detail: "সংক্ষিপ্ত মূল্যায়ন ও সাক্ষাৎকারের মাধ্যমে যাচাই।",
         },
         {
           icon: UserCheck,
-          title: "Confirmation",
-          detail: "Receive an offer and complete enrollment.",
+          title: "নিশ্চিতকরণ",
+          detail: "অফার লেটার গ্রহণ করে ভর্তি সম্পন্ন করুন।",
         },
       ],
-      requirementsTitle: "Eligibility and documents",
-      requirementsSubtitle: "Bring these items to your admissions appointment.",
+      requirementsTitle: "যোগ্যতা ও কাগজপত্র",
+      requirementsSubtitle: "ভর্তি সাক্ষাতে যা নিয়ে আসবেন।",
       requirements: [
-        "Birth certificate copy",
-        "Previous report cards",
-        "Two passport-size photos",
-        "Guardian NID copy",
-        "Transfer certificate (if applicable)",
+        "জন্ম নিবন্ধনের কপি",
+        "পূর্ববর্তী রিপোর্ট কার্ড",
+        "পাসপোর্ট সাইজের দুই কপি ছবি",
+        "অভিভাবকের এনআইডি কপি",
+        "ট্রান্সফার সার্টিফিকেট (প্রযোজ্য হলে)",
       ],
-      listTitle: "Admissions updates",
-      listSubtitle: "Latest updates from the admissions office.",
+      listTitle: "ভর্তি আপডেট",
+      listSubtitle: "ভর্তি অফিস থেকে সর্বশেষ তথ্য।",
       listLabels: {
-        student: "Student",
-        grade: "Grade",
-        status: "Status",
-        score: "Score",
-        interview: "Interview",
+        student: "শিক্ষার্থী",
+        grade: "শ্রেণি",
+        status: "অবস্থা",
+        score: "স্কোর",
+        interview: "সাক্ষাৎকার",
       },
-      downloadsTitle: "Forms and documents",
-      downloadsSubtitle: "Download admissions guides and policy files.",
-      downloadAction: "Download",
-      supportTitle: "Need help?",
+      downloadsTitle: "ফর্ম ও ডকুমেন্ট",
+      downloadsSubtitle: "ভর্তি নির্দেশিকা ও নীতিমালা ডাউনলোড করুন।",
+      downloadAction: "ডাউনলোড",
+      supportTitle: "সহায়তা দরকার?",
       supportSubtitle:
-        "Our admissions team is ready to answer questions and schedule visits.",
-      supportAction: "Contact admissions",
-      visitTitle: "Campus visit",
+        "ভর্তি দল প্রশ্নের উত্তর ও ভিজিট নির্ধারণে সহায়তা করবে।",
+      supportAction: "ভর্তি অফিসে যোগাযোগ",
+      visitTitle: "ক্যাম্পাস ভিজিট",
       visitDetail:
-        "Campus tours run Sunday to Thursday between 10:00 AM and 2:00 PM.",
-      programsTitle: "Programs offered",
-      programsSubtitle: "Academic stages across the school.",
+        "ক্যাম্পাস ভিজিট: রবি থেকে বৃহস্পতি, সকাল ১০টা থেকে দুপুর ২টা।",
+      programsTitle: "প্রদানকৃত প্রোগ্রাম",
+      programsSubtitle: "স্কুলের বিভিন্ন স্তর।",
       programs: [
-        "Primary: Grades 1-5",
-        "Middle: Grades 6-8",
-        "Senior: Grades 9-12",
+        "প্রাইমারি: শ্রেণি ১-৫",
+        "মিডল: শ্রেণি ৬-৮",
+        "সিনিয়র: শ্রেণি ৯-১২",
       ],
     },
   }[language];
@@ -142,10 +142,23 @@ export default function AdmissionsPage() {
     if (normalized.includes("selected") || normalized.includes("shortlisted")) {
       return "success";
     }
+    if (
+      normalized.includes("নির্বাচিত") ||
+      normalized.includes("স্বল্প") ||
+      normalized.includes("তালিকাভুক্ত")
+    ) {
+      return "success";
+    }
     if (normalized.includes("wait")) {
       return "warn";
     }
+    if (normalized.includes("অপেক্ষ")) {
+      return "warn";
+    }
     if (normalized.includes("interview")) {
+      return "info";
+    }
+    if (normalized.includes("সাক্ষাৎকার")) {
       return "info";
     }
     return "default";

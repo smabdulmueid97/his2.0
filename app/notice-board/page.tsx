@@ -37,26 +37,26 @@ export default function NoticeBoardPage() {
       ],
     },
     bn: {
-      badge: "Notice Board",
-      title: "Notices, events, and announcements.",
-      subtitle: "Stay updated with the latest academic and campus news.",
-      latestTitle: "Latest notices",
-      latestSubtitle: "Fresh updates posted by the school office.",
-      statusLabel: "Status",
-      audienceLabel: "Audience",
-      categoryLabel: "Category",
-      dateLabel: "Date",
-      readAction: "Read notice",
-      contactTitle: "Questions about a notice?",
+      badge: "নোটিশ বোর্ড",
+      title: "নোটিশ, অনুষ্ঠান ও ঘোষণা।",
+      subtitle: "সর্বশেষ একাডেমিক ও ক্যাম্পাস খবর জানুন।",
+      latestTitle: "সর্বশেষ নোটিশ",
+      latestSubtitle: "স্কুল অফিস থেকে প্রকাশিত নতুন আপডেট।",
+      statusLabel: "অবস্থা",
+      audienceLabel: "লক্ষ্য শ্রোতা",
+      categoryLabel: "বিভাগ",
+      dateLabel: "তারিখ",
+      readAction: "নোটিশ পড়ুন",
+      contactTitle: "কোনো নোটিশ সম্পর্কে প্রশ্ন?",
       contactSubtitle:
-        "Contact the office for clarification, attachments, or schedule updates.",
-      contactAction: "Contact the office",
-      quickTitle: "Quick reminders",
-      quickSubtitle: "Keep these items on your checklist.",
+        "ব্যাখ্যা, সংযুক্তি বা সময়সূচি জানতে অফিসে যোগাযোগ করুন।",
+      contactAction: "অফিসে যোগাযোগ",
+      quickTitle: "দ্রুত স্মরণিকা",
+      quickSubtitle: "চেকলিস্টে রাখুন।",
       quickItems: [
-        "Carry school ID for exam entry.",
-        "Check the student portal for updates.",
-        "Confirm transport changes 24 hours ahead.",
+        "পরীক্ষার জন্য আইডি কার্ড সাথে রাখুন।",
+        "স্টুডেন্ট পোর্টালে নিয়মিত আপডেট দেখুন।",
+        "পরিবহন পরিবর্তন ২৪ ঘণ্টা আগে নিশ্চিত করুন।",
       ],
     },
   }[language];
@@ -68,7 +68,13 @@ export default function NoticeBoardPage() {
     if (normalized.includes("new") || normalized.includes("open")) {
       return "success";
     }
+    if (normalized.includes("নতুন") || normalized.includes("খোলা")) {
+      return "success";
+    }
     if (normalized.includes("scheduled")) {
+      return "info";
+    }
+    if (normalized.includes("নির্ধারিত")) {
       return "info";
     }
     return "default";

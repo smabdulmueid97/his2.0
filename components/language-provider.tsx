@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 export type Language = "en" | "bn";
 
@@ -20,33 +14,17 @@ const LanguageContext = createContext<LanguageContextValue | undefined>(
   undefined
 );
 
-const STORAGE_KEY = "his-language";
-const LEGACY_STORAGE_KEY = "his-demo-language";
-
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("bn");
 
   useEffect(() => {
-    const stored =
-      window.localStorage.getItem(STORAGE_KEY) ??
-      window.localStorage.getItem(LEGACY_STORAGE_KEY);
-    if (stored === "en" || stored === "bn") {
-      setLanguageState(stored);
-    }
+    setLanguageState("bn");
+    document.documentElement.lang = "bn";
   }, []);
 
-  useEffect(() => {
-    document.documentElement.lang = language === "bn" ? "bn" : "en";
-  }, [language]);
+  const setLanguage = (_nextLanguage: Language) => setLanguageState("bn");
 
-  const setLanguage = (nextLanguage: Language) => {
-    setLanguageState(nextLanguage);
-    window.localStorage.setItem(STORAGE_KEY, nextLanguage);
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "bn" : "en");
-  };
+  const toggleLanguage = () => setLanguageState("bn");
 
   const value = useMemo(
     () => ({ language, setLanguage, toggleLanguage }),

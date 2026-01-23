@@ -37,27 +37,28 @@ export default function ResultsPage() {
         "For recheck requests, contact the academic office within seven working days.",
     },
     bn: {
-      badge: "Results",
-      title: "Exam results and performance summaries.",
-      subtitle: "Search by student ID and term, or view recent results below.",
-      searchTitle: "Find a result",
-      searchSubtitle: "Use student ID and term to filter results.",
+      badge: "ফলাফল",
+      title: "পরীক্ষার ফলাফল ও পারফরম্যান্স সারসংক্ষেপ।",
+      subtitle:
+        "শিক্ষার্থী আইডি ও টার্ম অনুযায়ী খুঁজুন অথবা নিচে সাম্প্রতিক ফলাফল দেখুন।",
+      searchTitle: "ফলাফল খুঁজুন",
+      searchSubtitle: "শিক্ষার্থী আইডি ও টার্ম ব্যবহার করুন।",
       search: {
-        studentId: "Student ID",
-        term: "Term (e.g. Term I)",
-        button: "Search results",
+        studentId: "শিক্ষার্থী আইডি",
+        term: "টার্ম (যেমন: টার্ম-১)",
+        button: "ফলাফল খুঁজুন",
       },
-      recentTitle: "Recent results",
-      recentSubtitle: "Latest published results from the academic office.",
-      statusLabel: "Status",
-      gpaLabel: "GPA",
-      meritLabel: "Merit",
-      subjectsLabel: "Subject scores",
-      remarksLabel: "Remarks",
-      downloadLabel: "Download result",
-      noteTitle: "Result policy",
+      recentTitle: "সাম্প্রতিক ফলাফল",
+      recentSubtitle: "একাডেমিক অফিস থেকে সর্বশেষ প্রকাশিত ফলাফল।",
+      statusLabel: "অবস্থা",
+      gpaLabel: "জিপিএ",
+      meritLabel: "মেধাক্রম",
+      subjectsLabel: "বিষয়ভিত্তিক নম্বর",
+      remarksLabel: "মন্তব্য",
+      downloadLabel: "ফলাফল ডাউনলোড",
+      noteTitle: "ফলাফল নীতিমালা",
       noteDetail:
-        "For recheck requests, contact the academic office within seven working days.",
+        "পুনঃনিরীক্ষার জন্য সাত কর্মদিবসের মধ্যে একাডেমিক অফিসে যোগাযোগ করুন।",
     },
   }[language];
 
@@ -68,7 +69,13 @@ export default function ResultsPage() {
     if (normalized.includes("pass")) {
       return "success";
     }
+    if (normalized.includes("উত্তীর্ণ") || normalized.includes("পাস")) {
+      return "success";
+    }
     if (normalized.includes("wait")) {
+      return "warn";
+    }
+    if (normalized.includes("অপেক্ষ")) {
       return "warn";
     }
     return "default";

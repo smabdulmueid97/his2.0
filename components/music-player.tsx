@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
@@ -14,10 +14,10 @@ export default function MusicPlayer() {
   const labels =
     language === "bn"
       ? {
-          title: "à¦¸à§à¦•à§à¦²à§‡à¦° à¦¸à¦‚à¦—à§€à¦¤",
-          subtitle: "à¦¸à§à¦•à§à¦²à§‡à¦° à¦¸à¦‚à¦—à§€à¦¤ à¦¶à§à¦¨à§à¦¨à¥¤",
-          play: "à¦šà¦¾à¦²à§ à¦•à¦°à§à¦¨",
-          pause: "à¦¬à¦¨à§à¦§ à¦•à¦°à§à¦¨",
+          title: "স্কুলের সংগীত",
+          subtitle: "স্কুলের সংগীত শুনুন।",
+          play: "চালু করুন",
+          pause: "বন্ধ করুন",
         }
       : {
           title: "School Anthem",
