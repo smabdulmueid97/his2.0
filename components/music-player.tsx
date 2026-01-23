@@ -52,7 +52,7 @@ export default function MusicPlayer() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-white)_90%,transparent)] backdrop-blur">
-      <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-4 px-3 py-3 md:px-3 2xl:px-0">
+      <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-4 px-4 py-3 md:px-4 2xl:px-0">
         <div>
           <p className="text-sm font-semibold text-[var(--color-ink)]">
             {labels.title}

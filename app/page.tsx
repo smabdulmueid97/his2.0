@@ -355,13 +355,17 @@ export default function Home() {
 
   return (
     <div className="space-y-16 pb-28">
-      <section className="relative overflow-hidden px-3 pt-12 md:px-4 md:pt-20 2xl:px-0">
+      <section className="relative overflow-hidden px-4 pt-12 md:px-4 md:pt-20 2xl:px-0">
         <div className="mx-auto grid max-w-screen-2xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <Badge variant="info">{content.hero.badge}</Badge>
-            <h1 className="text-4xl font-semibold text-[var(--color-ink)] md:text-5xl lg:text-6xl text-balance">
-              {content.hero.title}
-            </h1>
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt={content.hero.title}
+                className="h-[120px] w-auto md:h-[160px] lg:h-[200px]"
+              />
+            </div>
             <p className="text-base text-[var(--color-muted)] md:text-lg">
               {content.hero.subtitle}
             </p>
@@ -401,14 +405,14 @@ export default function Home() {
               <div className="overflow-hidden rounded-2xl border border-[var(--color-line)]">
                 <iframe
                   title="Habiba International School Map"
-                  src="https://maps.google.com/maps?q=29%20Al%20Madina%20Road%20Mirpur%201%20Dhaka&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=23.7964989,90.3614516&t=&z=17&ie=UTF8&iwloc=&output=embed"
                   className="h-[300px] w-full md:h-[360px]"
                   loading="lazy"
                 />
               </div>
               <Button variant="outline" asChild className="w-full">
                 <a
-                  href="https://maps.google.com/maps?q=29%20Al%20Madina%20Road%20Mirpur%201%20Dhaka"
+                  href="https://www.google.com/maps/place/Habiba+international+school/@23.7964989,90.3588767,17z/data=!4m6!3m5!1s0x3755c100727a0431:0xe52a5b521283c254!8m2!3d23.7964989!4d90.3614516!16s%2Fg%2F11wfggvj68"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -421,7 +425,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5">
             <SectionHeading
@@ -461,7 +465,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.about.pillarsHeading}
@@ -489,7 +493,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto max-w-screen-2xl space-y-6 rounded-[var(--radius)] border border-[var(--color-line)] bg-[var(--color-white)] p-8">
           <SectionHeading
             title={content.about.campus.heading}
@@ -513,7 +517,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.heading}
@@ -544,7 +548,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.programs.heading}
@@ -567,7 +571,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.list.heading}
@@ -595,7 +599,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0">
+      <section className="px-4 md:px-4 2xl:px-0">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.downloads.heading}
@@ -627,7 +631,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-3 md:px-3 2xl:px-0 pb-6">
+      <section className="px-4 md:px-4 2xl:px-0 pb-6">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.faq.heading}

@@ -58,30 +58,30 @@ export default function SiteFooter() {
   }[language];
 
   return (
-    <footer className="relative z-10 border-t border-[var(--color-line)] bg-[var(--color-white)]">
-      <div className="mx-auto grid max-w-screen-2xl gap-8 px-3 py-12 md:grid-cols-[1.2fr_0.8fr_1fr] md:px-3 2xl:px-0">
+    <footer className="relative z-10 border-t border-[#3b0f0d] bg-[#5a1915]">
+      <div className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-12 md:grid-cols-[1.2fr_0.8fr_1fr] md:px-4 2xl:px-0">
         <div className="space-y-3">
-          <p className="text-lg font-semibold text-[var(--color-ink)]">
+          <p className="text-lg font-semibold text-[var(--color-white)]">
             {content.brand}
           </p>
-          <p className="text-sm text-[var(--color-muted)]">
+          <p className="text-sm text-[color-mix(in_srgb,var(--color-white)_80%,transparent)]">
             {content.description}
           </p>
-          <p className="text-xs text-[var(--color-muted)]">
+          <p className="text-xs text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
             {content.address}
           </p>
         </div>
 
         <div className="space-y-3">
-          <p className="text-sm font-semibold text-[var(--color-ink)]">
+          <p className="text-sm font-semibold text-[var(--color-white)]">
             {content.quickLinksLabel}
           </p>
-          <div className="grid gap-2 text-sm text-[var(--color-muted)]">
+          <div className="grid gap-2 text-sm text-[color-mix(in_srgb,var(--color-white)_75%,transparent)]">
             {content.links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition hover:text-[var(--color-blue-700)]"
+                className="transition hover:text-[var(--color-gold-500)]"
               >
                 {link.label}
               </Link>
@@ -90,23 +90,23 @@ export default function SiteFooter() {
         </div>
 
         <div className="space-y-3">
-          <p className="text-sm font-semibold text-[var(--color-ink)]">
+          <p className="text-sm font-semibold text-[var(--color-white)]">
             {content.hoursLabel}
           </p>
-          <div className="text-sm text-[var(--color-muted)]">
+          <div className="text-sm text-[color-mix(in_srgb,var(--color-white)_75%,transparent)]">
             {content.hours.map((line) => (
               <p key={line}>{line}</p>
             ))}
           </div>
-          <p className="text-sm font-semibold text-[var(--color-ink)]">
+          <p className="text-sm font-semibold text-[var(--color-white)]">
             {content.callUsLabel}
           </p>
-          <p className="text-sm text-[var(--color-muted)]">
+          <p className="text-sm text-[color-mix(in_srgb,var(--color-white)_75%,transparent)]">
             {content.callUsValue}
           </p>
         </div>
       </div>
-      <div className="border-t border-[var(--color-line)] px-3 py-4 text-center text-xs text-[var(--color-muted)] 2xl:px-0">
+      <div className="border-t border-[#3b0f0d] px-4 py-4 text-center text-xs text-[color-mix(in_srgb,var(--color-white)_70%,transparent)] 2xl:px-0">
         {content.footerNote}
       </div>
     </footer>

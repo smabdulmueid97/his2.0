@@ -18,13 +18,22 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("bn");
 
   useEffect(() => {
-    setLanguageState("bn");
-    document.documentElement.lang = "bn";
+    const storedLanguage = window.localStorage.getItem(
+      "his-language"
+    ) as Language | null;
+    const initialLanguage = storedLanguage ?? "bn";
+    setLanguageState(initialLanguage);
+    document.documentElement.lang = initialLanguage;
   }, []);
 
-  const setLanguage = (_nextLanguage: Language) => setLanguageState("bn");
+  const setLanguage = (nextLanguage: Language) => {
+    setLanguageState(nextLanguage);
+    document.documentElement.lang = nextLanguage;
+    window.localStorage.setItem("his-language", nextLanguage);
+  };
 
-  const toggleLanguage = () => setLanguageState("bn");
+  const toggleLanguage = () =>
+    setLanguage(language === "bn" ? "en" : "bn");
 
   const value = useMemo(
     () => ({ language, setLanguage, toggleLanguage }),

@@ -130,7 +130,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="space-y-12 px-3 py-12 md:px-4 md:py-16 2xl:px-0">
+    <div className="space-y-12 px-4 py-12 md:px-4 md:py-16 2xl:px-0">
       <div className="mx-auto max-w-screen-2xl space-y-6">
         <Badge variant="info">{content.badge}</Badge>
         <h1 className="text-4xl font-semibold text-[var(--color-ink)] md:text-5xl">
@@ -239,7 +239,7 @@ export default function ContactPage() {
             <p>{content.mapNote}</p>
             <Button variant="outline" asChild>
               <a
-                href="https://maps.google.com/maps?q=29%20Al%20Madina%20Road,%20Mirpur%201,%20Dhaka"
+                href="https://www.google.com/maps/place/Habiba+international+school/@23.7964989,90.3588767,17z/data=!4m6!3m5!1s0x3755c100727a0431:0xe52a5b521283c254!8m2!3d23.7964989!4d90.3614516!16s%2Fg%2F11wfggvj68"
                 target="_blank"
                 rel="noreferrer"
               >

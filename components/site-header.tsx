@@ -3,11 +3,14 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+import { useLanguage } from "@/components/language-provider";
 import { ctaLinks, mainNav } from "@/lib/site-navigation";
 
 export default function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const navRef = useRef<HTMLElement | null>(null);
+  const { language, toggleLanguage } = useLanguage();
+  const primaryNav = mainNav.filter((item) => item.href !== "/login");
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -34,18 +37,22 @@ export default function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-white)]">
-      <div className="border-b border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-white)_90%,transparent)]">
-        <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 px-3 py-4 lg:flex-row lg:items-center lg:justify-between 2xl:px-0">
+    <header className="sticky top-0 z-40 border-b border-[#3b0f0d] bg-[#5a1915]">
+      <div className="border-b border-[#3b0f0d] bg-[#5a1915]">
+        <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 px-4 py-4 lg:flex-row lg:items-center lg:justify-between 2xl:px-0">
           <Link href="/" className="flex items-start gap-4">
-            <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-blue-700)] text-xl font-bold text-[var(--color-white)]">
-              HIS
+            <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-white)] shadow-sm">
+              <img
+                src="/logo.png"
+                alt="Habiba International School"
+                className="h-12 w-12 object-contain"
+              />
             </span>
             <div className="space-y-1">
-              <p className="text-lg font-semibold text-[var(--color-ink)] sm:text-xl">
+              <p className="text-lg font-semibold text-[var(--color-white)] sm:text-xl">
                 হাবিবা ইন্টারন্যাশনাল স্কুল
               </p>
-              <div className="text-xs text-[var(--color-muted)] sm:text-sm">
+              <div className="text-xs text-[color-mix(in_srgb,var(--color-white)_80%,transparent)] sm:text-sm">
                 <span className="block">
                   ২৯ আল মদিনা রোড, ইস্ট আহমেদ নগর, মিরপুর-১, ঢাকা-১২১৬
                 </span>
@@ -54,22 +61,31 @@ export default function SiteHeader() {
             </div>
           </Link>
           <div className="flex flex-wrap items-center gap-2">
-            {ctaLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={item.className}>
-                {item.label}
-              </Link>
-            ))}
+            <Link
+              href="/login"
+              className="inline-flex items-center justify-center rounded-full border border-[#3b0f0d] bg-[#4a120f] px-4 py-2 text-sm font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
+            >
+              লগইন
+            </Link>
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              aria-label="ভাষা পরিবর্তন"
+              className="inline-flex items-center justify-center rounded-full border border-[#3b0f0d] bg-[#4a120f] px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
+            >
+              {language === "bn" ? "EN" : "বাংলা"}
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="bg-[var(--color-white)]">
-        <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 px-3 py-3 lg:h-14 2xl:px-0">
+      <div className="bg-[#5a1915]">
+        <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 px-4 py-3 lg:h-14 2xl:px-0">
           <nav
             ref={navRef}
-            className="hidden items-center gap-5 text-sm font-semibold text-[var(--color-ink)] lg:flex"
+            className="hidden items-center gap-5 text-sm font-semibold text-[var(--color-white)] lg:flex"
           >
-            {mainNav.map((item) => (
+            {primaryNav.map((item) => (
               <div key={item.label} className="relative">
                 {item.children ? (
                   <>
@@ -81,41 +97,43 @@ export default function SiteHeader() {
                         )
                       }
                       aria-expanded={openMenu === item.label}
-                      className="inline-flex items-center gap-1 transition hover:text-[var(--color-blue-700)]"
+                      className="inline-flex items-center gap-1 rounded-full border border-[#3b0f0d] bg-[#4a120f] px-3 py-1.5 text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
                     >
                       {item.label}
-                      <span className="text-[10px] text-[var(--color-muted)]">
+                      <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
                         ▼
                       </span>
                     </button>
                     <div
-                      className={`absolute left-0 top-full z-30 mt-3 min-w-[240px] rounded-2xl border border-[var(--color-line)] bg-[var(--color-white)] p-2 text-sm text-[var(--color-ink)] shadow-lg transition ${
+                      className={`absolute left-0 top-full z-30 mt-3 min-w-[320px] rounded-2xl border border-[#3b0f0d] bg-[#4a120f] p-2 text-sm text-[var(--color-white)] shadow-lg transition lg:min-w-[520px] ${
                         openMenu === item.label
                           ? "visible opacity-100"
                           : "invisible pointer-events-none opacity-0"
                       }`}
                     >
-                      <Link
-                        href={item.href}
-                        className="block rounded-xl px-3 py-2 font-semibold text-[var(--color-blue-700)] transition hover:bg-[color-mix(in_srgb,var(--color-blue-700)_12%,transparent)]"
-                      >
-                        সব দেখুন
-                      </Link>
-                      {item.children.map((child) => (
+                      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                         <Link
-                          key={child.label}
-                          href={child.href}
-                          className="block rounded-xl px-3 py-2 transition hover:bg-[color-mix(in_srgb,var(--color-blue-700)_12%,transparent)]"
+                          href={item.href}
+                          className="col-span-full block rounded-xl border border-[#3b0f0d] px-3 py-2 font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
                         >
-                          {child.label}
+                          সব দেখুন
                         </Link>
-                      ))}
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            className="block rounded-xl border border-transparent px-3 py-2 text-[var(--color-white)] shadow-sm transition hover:border-[#3b0f0d] hover:bg-[#6b1f1a]"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </>
                 ) : (
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-1 transition hover:text-[var(--color-blue-700)]"
+                    className="inline-flex items-center gap-1 rounded-full border border-[#3b0f0d] bg-[#4a120f] px-3 py-1.5 text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
                     onClick={() => setOpenMenu(null)}
                   >
                     {item.label}
@@ -125,29 +143,43 @@ export default function SiteHeader() {
             ))}
           </nav>
 
+          <div className="hidden items-center gap-2 lg:flex">
+            {ctaLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${item.className} shadow-sm`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
           <details className="lg:hidden">
-            <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-[var(--color-line)] px-4 py-2 text-sm font-semibold text-[var(--color-blue-900)] transition hover:bg-[var(--color-blue-100)] [&::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-[#3b0f0d] bg-[#4a120f] px-4 py-2 text-sm font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a] [&::-webkit-details-marker]:hidden">
               মেনু
-              <span className="text-[10px] text-[var(--color-muted)]">▼</span>
+              <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
+                ▼
+              </span>
             </summary>
-            <div className="mt-4 space-y-3 rounded-2xl border border-[var(--color-line)] bg-[var(--color-white)] p-4 text-sm text-[var(--color-ink)]">
+            <div className="mt-4 space-y-3 rounded-2xl border border-[#3b0f0d] bg-[#4a120f] p-4 text-sm text-[var(--color-white)]">
               <div className="space-y-2">
-                {mainNav.map((item) =>
+                {primaryNav.map((item) =>
                   item.children ? (
                     <details
                       key={item.label}
-                      className="rounded-xl border border-[var(--color-line)]"
+                      className="rounded-xl border border-[#3b0f0d]"
                     >
                       <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-semibold [&::-webkit-details-marker]:hidden">
                         <span>{item.label}</span>
-                        <span className="text-[10px] text-[var(--color-muted)]">
+                        <span className="text-[10px] text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
                           ▼
                         </span>
                       </summary>
-                      <div className="grid gap-1 px-4 pb-3 text-sm">
+                      <div className="grid gap-2 px-4 pb-3 text-sm sm:grid-cols-2">
                         <Link
                           href={item.href}
-                          className="rounded-lg px-2 py-1 font-semibold text-[var(--color-blue-700)] transition hover:bg-[color-mix(in_srgb,var(--color-blue-700)_12%,transparent)]"
+                          className="sm:col-span-2 rounded-lg border border-[#3b0f0d] px-2 py-1 font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
                         >
                           সব দেখুন
                         </Link>
@@ -155,7 +187,7 @@ export default function SiteHeader() {
                           <Link
                             key={child.label}
                             href={child.href}
-                            className="rounded-lg px-2 py-1 transition hover:bg-[color-mix(in_srgb,var(--color-blue-700)_12%,transparent)]"
+                            className="rounded-lg border border-transparent px-2 py-1 text-[var(--color-white)] shadow-sm transition hover:border-[#3b0f0d] hover:bg-[#6b1f1a]"
                           >
                             {child.label}
                           </Link>
@@ -166,7 +198,7 @@ export default function SiteHeader() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="flex items-center justify-between rounded-xl border border-[var(--color-line)] px-4 py-3 font-semibold transition hover:border-[var(--color-blue-700)]"
+                      className="flex items-center justify-between rounded-xl border border-[#3b0f0d] bg-[#4a120f] px-4 py-3 font-semibold text-[var(--color-white)] shadow-sm transition hover:bg-[#6b1f1a]"
                     >
                       {item.label}
                     </Link>
@@ -178,7 +210,7 @@ export default function SiteHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={item.className}
+                    className={`${item.className} shadow-sm`}
                   >
                     {item.label}
                   </Link>
