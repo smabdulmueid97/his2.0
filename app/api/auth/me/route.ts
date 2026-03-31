@@ -6,7 +6,10 @@ import { connectToDatabase } from "@/lib/mongodb";
 import User from "@/lib/models/user";
 
 export async function GET() {
-  const sessionToken = cookies().get("his-session")?.value;
+  // Await the cookies() function before accessing .get()
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get("his-session")?.value;
+  
   if (!sessionToken) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
