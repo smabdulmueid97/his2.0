@@ -354,7 +354,7 @@ export default function Home() {
 
   return (
     <div className="space-y-16 pb-28">
-      <section className="relative overflow-hidden px-4 pt-12 md:px-4 md:pt-20 2xl:px-0">
+      <section className="relative overflow-hidden page-gutter pt-12 md:pt-20">
         <div className="mx-auto grid max-w-screen-2xl items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <Badge variant="info">{content.hero.badge}</Badge>
@@ -427,7 +427,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto grid max-w-screen-2xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5">
             <SectionHeading
@@ -467,7 +467,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.about.pillarsHeading}
@@ -495,7 +495,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto max-w-screen-2xl space-y-6 rounded-[var(--radius)] border border-[var(--color-line)] bg-[var(--color-white)] p-8">
           <SectionHeading
             title={content.about.campus.heading}
@@ -519,7 +519,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.heading}
@@ -550,7 +550,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.programs.heading}
@@ -573,7 +573,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.list.heading}
@@ -601,7 +601,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0">
+      <section className="page-gutter">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.downloads.heading}
@@ -633,7 +633,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-4 2xl:px-0 pb-6">
+      <section className="page-gutter pb-6">
         <div className="mx-auto max-w-screen-2xl space-y-8">
           <SectionHeading
             title={content.admissions.faq.heading}

@@ -111,7 +111,7 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-[#1f0a36] bg-[#2b0f4a]">
       <div className="border-b border-[#1f0a36] bg-[#2b0f4a]">
-        <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 px-4 py-4 lg:flex-row lg:items-center lg:justify-between 2xl:px-0">
+        <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 page-gutter py-4 lg:flex-row lg:items-center lg:justify-between">
           <Link href="/" className="flex items-start gap-4">
             <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-white)] shadow-sm">
               <img
@@ -160,7 +160,7 @@ export default function SiteHeader() {
       </div>
 
       <div className="bg-[#6fa9e6]">
-        <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 px-4 py-3 lg:h-14 2xl:px-0">
+        <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 page-gutter py-3 lg:h-14">
           <nav
             ref={navRef}
             className="hidden items-center gap-5 text-sm font-semibold text-[#0b1f3a] lg:flex"

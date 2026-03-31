@@ -14,6 +14,7 @@
   --radius: 16px;
   --font-sans: var(--font-sora);
   --font-display: var(--font-playfair);
+  --page-gutter: clamp(1.25rem, 4vw, 2.75rem);
 }
 
 @layer base {
@@ -41,6 +42,11 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .page-gutter {
+    padding-left: calc(var(--page-gutter, 1.25rem) + env(safe-area-inset-left));
+    padding-right: calc(var(--page-gutter, 1.25rem) + env(safe-area-inset-right));
   }
 
   .glass-panel {

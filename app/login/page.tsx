@@ -4,7 +4,7 @@ import LoginClient from "./login-client";
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="px-4 py-12">Loading...</div>}>
+    <Suspense fallback={<div className="page-gutter py-12">Loading...</div>}>
       <LoginClient />
     </Suspense>
   );

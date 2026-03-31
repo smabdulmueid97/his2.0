@@ -59,7 +59,7 @@ export default function SiteFooter() {
 
   return (
     <footer className="relative z-10 border-t border-[#1f0a36] bg-[#2b0f4a]">
-      <div className="mx-auto grid max-w-screen-2xl gap-8 px-4 py-12 md:grid-cols-[1.2fr_0.8fr_1fr] md:px-4 2xl:px-0">
+      <div className="mx-auto grid max-w-screen-2xl gap-8 page-gutter py-12 md:grid-cols-[1.2fr_0.8fr_1fr]">
         <div className="space-y-3">
           <p className="text-lg font-semibold text-[var(--color-white)]">
             {content.brand}
@@ -106,7 +106,7 @@ export default function SiteFooter() {
           </p>
         </div>
       </div>
-      <div className="border-t border-[#1f0a36] px-4 py-4 text-center text-xs text-[color-mix(in_srgb,var(--color-white)_70%,transparent)] 2xl:px-0">
+      <div className="border-t border-[#1f0a36] page-gutter py-4 text-center text-xs text-[color-mix(in_srgb,var(--color-white)_70%,transparent)]">
         {content.footerNote}
       </div>
     </footer>

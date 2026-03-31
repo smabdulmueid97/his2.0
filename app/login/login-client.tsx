@@ -94,7 +94,7 @@ export default function LoginClient() {
   };
 
   return (
-    <div className="space-y-10 px-4 py-12 md:px-4 md:py-16 2xl:px-0">
+    <div className="space-y-10 page-gutter py-12 md:py-16">
       <div className="mx-auto max-w-2xl space-y-6">
         <Badge variant="info">{content.badge}</Badge>
         <h1 className="text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
