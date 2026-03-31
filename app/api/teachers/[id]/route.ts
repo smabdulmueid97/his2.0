@@ -5,11 +5,11 @@ import { connectToDatabase } from "@/lib/mongodb";
 import User from "@/lib/models/user";
 
 type RouteContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function PATCH(request: Request, context: RouteContext) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const payload = await request.json();
   const {
     fullName,
@@ -77,7 +77,7 @@ export async function PATCH(request: Request, context: RouteContext) {
 }
 
 export async function DELETE(_: Request, context: RouteContext) {
-  const { id } = context.params;
+  const { id } = await context.params;
 
   try {
     await connectToDatabase();
